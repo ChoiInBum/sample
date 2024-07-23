@@ -1,24 +1,39 @@
+import React, {useState} from 'react';
 import './App.css';
 
-import Body from './props/body';
-import Main from './props/main';
-import Counter from './props/counter';
-
 function App() {
-    var weather = '비바람';
-    const BodyProps = {
-        name : '홍길동',
-        object : 'React',
+  const [todo, setTodo] = useState('');
+  const [todos, setTodos] = useState([]);
 
-    }
-    return (
-        <div className="App">
-            <Body weather={weather}/>
-            <Main BodyProps={BodyProps}/>
-            <hr/>
-            <Counter/>
-        </div>
-    );
+  const addTodo = () => {
+    setTodos([...todos, todo]);
+    setTodo('');
+  }
+
+  return (
+    <div className="App">
+      <h1>Todo List</h1>
+      <div className=''>
+        <input type='text' value={todo}></input>&nbsp;
+        <button onClick={addTodo}>Add</button>
+      </div>
+      <br/>
+      <div className='todo-list'>
+        
+          {
+            todos.map((item, index) => (
+              <div>  
+                <span>{item}</span>
+                <button>삭제</button>
+              </div>
+            )
+            )
+          }
+        
+        <button>삭제</button>
+      </div>
+    </div>
+  );
 }
 
 export default App;

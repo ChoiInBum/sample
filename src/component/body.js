@@ -1,7 +1,21 @@
+import React, {useRef} from 'react';
+
 const Body = function() {
+    const topRef = useRef(null);
+
+    console.log(topRef);
+    const scrollToTop = () => {
+        topRef.current.scrollIntoView({behavior: 'smooth'});
+    }
+
     return(
         <div>
-            <h3>오늘 수업내용</h3>
+            <div ref={topRef}></div>
+            <div style={{height:'1500px'}}>
+                <p>본문내용</p>
+            </div>
+            <button onClick={scrollToTop}>Top</button>
+
         </div>
     );
 }
